@@ -21,15 +21,6 @@ router.get("/", async (req, res) => {
 
 router.post(
   "/register",
-  // body("email")
-  //   .isEmail()
-  //   .custom(async (value) => {
-  //     //const item = await User.findOne({ email: value });
-  //     if (item) {
-  //       throw new Error("Email already in use");
-  //     }
-  //     return true;
-  //   }),
   body("firstName").notEmpty(),
   body("lastName").notEmpty(),
   body("mobile").isNumeric().isLength(10),
@@ -49,7 +40,7 @@ router.post(
       // console.log({ item, token });
       return res.status(201).send({ item, token });
     } catch (e) {
-      return res.status(400).send("ERROR : " + e);
+      return res.status(500).send("ERROR : " + e);
     }
   }
 );
